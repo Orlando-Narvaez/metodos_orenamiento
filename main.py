@@ -99,12 +99,12 @@ if __name__ == "__main__":
 
     # Leer los arreglos de los archivos generados}
     arregloNum1 = []
-    with open("archivos/arreglo1.txt", 'r') as archivo:
+    with open("archivos/arreglo1", 'r') as archivo:
         for linea in archivo:
             valor = int(linea.strip())
             arregloNum1.append(valor)
         #arreglo1 = [int(line.strip()) for line in f]
-    with open("archivos/arreglo2.txt") as f:
+    with open("archivos/arreglo2") as f:
         arreglo2 = [int(line.strip()) for line in f]
 
 
@@ -152,11 +152,12 @@ if __name__ == "__main__":
         tiempos_ejecucion.append(tiempo/2)
     print(tiempos_ejecucion)
 
-    tiempos_ejecucion.sort()
+    #tiempos_ejecucion.sort()
+    tiempos_ordenados, metodos_ordenados = zip(*sorted(zip(tiempos_ejecucion, metodos_ordenamiento.keys())))
+
 
     graficaTorta = GraficaTorta()
-    graficaBarras = GraficaBarras()
 
-    # Generar la gráfica
-    graficaTorta.generar_grafica(tiempos_ejecucion)
-    graficaBarras.generar_grafica(tiempos_ejecucion)
+
+    # Generar la gráfica de torta con leyenda
+    graficaTorta.generar_grafica(tiempos_ordenados, metodos_ordenados)
